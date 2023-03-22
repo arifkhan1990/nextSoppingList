@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-
+import mongoose from 'mongoose';
 // Create Schema
 const UserSchema = new Schema({
   name: {
@@ -18,9 +18,13 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
+  },
+  role: {
+    type: String,
+    default: "user"
   }
 });
 
-const User = model('user', UserSchema);
+const User = mongoose.models.User || model('User', UserSchema);
 
 export default User;

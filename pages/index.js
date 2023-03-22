@@ -1,13 +1,11 @@
-import ShoppingList from '../components/ShoppingList';
-import ItemModal from '../components/ItemModal';
-import { Container } from 'reactstrap';
+
+import ShoppingItem from '../components/ShoppingItem';
+
 export default function Home() {
+
   return (
     <main>
-      <Container>
-        {/* <ItemModal /> */}
-        <ShoppingList />
-      </Container>
+        <ShoppingItem />
     </main>
   );
 }

@@ -8,6 +8,7 @@ const dbConnection = async () => {
       console.log('Database Connected');
     }
   } catch (errors) {
+    console.log({errors: errors})
     return Promise.reject(errors);
   }
 };

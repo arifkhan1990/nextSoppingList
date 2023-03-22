@@ -1,10 +1,9 @@
 import Item from '../models/Item';
 
-// Create item
 export const createItem = async (req, res) => {
+  console.log(req.body);
   try {
     const item = await Item.create(req.body);
-
     res.status(201).json({
       success: true,
       item,
@@ -17,15 +16,14 @@ export const createItem = async (req, res) => {
   }
 };
 
-// Read items (all)
+
 export const readItems = async (req, res) => {
   try {
     const items = await Item.find().sort({ createdAt: -1 });
-
     res.status(200).json({
-      success: true,
-      items,
-    });
+        success: true,
+        items,
+      });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -34,7 +32,7 @@ export const readItems = async (req, res) => {
   }
 };
 
-// Read item
+
 export const readItem = async (req, res) => {
   try {
     const item = await Item.findById(req.query.itemId);
@@ -58,16 +56,14 @@ export const readItem = async (req, res) => {
   }
 };
 
-// Update item
+
 export const updateItem = async (req, res) => {
   const {itemId} = req.query;
-  const newItem = req.body;
 
-  if(itemId && newItem){
+
+  if(itemId){
     try {
-      console.log(newItem);
-      const newData = await Item.findByIdAndUpdate({_id: itemId} , newItem);
-      // console.log(newData);
+      const newData = await Item.findByIdAndUpdate({_id: itemId} , req.body);
       res.status(200).json({
         success: true,
         item: newData,
@@ -86,7 +82,7 @@ export const updateItem = async (req, res) => {
   }
 };
 
-// Delete item
+
 export const deleteItem = async (req, res) => {
   try {
     const item = await Item.findById(req.query.itemId);
@@ -108,5 +104,21 @@ export const deleteItem = async (req, res) => {
       success: false,
       error,
     });
+  }
+};
+
+export const likeDislikeItem = async (req, res) => {
+  const { id, email } = req.body;
+  try {
+    const item = await Item.findById(id);
+    if (!item.likes.includes(email)) {
+      await item.updateOne({ $push: { likes: email } });
+      res.status(200).json({ status: true, msg: 'Item liked!' });
+    } else {
+      await item.updateOne({ $pull: { likes: email } });
+      res.status(200).json({ status: true, msg: 'Item UnLiked!' });
+    }
+  } catch (error) {
+    res.status(500).json({ status: false, err: error.message });
   }
 };

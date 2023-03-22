@@ -1,23 +1,16 @@
 import dbConnection from '../../../config/dbConnection';
 import {
-  readItem,
-  updateItem,
-  deleteItem,
+  likeDislikeItem,
 } from '../../../controllers/ItemController';
-import jwtNextTokenVerify from '../../../lib/jwtNextTokenVerify';
 
+import jwtNextTokenVerify from '../../../lib/jwtNextTokenVerify';
 const handler = async (req, res) => {
 
   const { method } = req;
+
   switch (method) {
-    case 'GET':
-      readItem(req, res);
-      break;
-    case 'DELETE': // TODO: validate
-      deleteItem(req, res);
-      break;
-    case 'PUT': // TODO: validate
-      updateItem(req, res);
+    case 'PUT':
+      likeDislikeItem(req, res);
       break;
     default:
       res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);

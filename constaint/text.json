@@ -1,0 +1,34 @@
+{
+    "register":  {
+       "success" : "User registration successflly done.",
+       "error" : "Failed to save the user data",
+       "errorEmail": "Given email address is incorrect!"
+    },
+    "UnAuthorize": "Sorry! You are not logged in. Please login first!",
+    "addItem": {
+        "success" : "Item Added Successfully",
+        "error": "Failed to save the item data",
+        "ItemNameRequired": "Item Name Required"
+    },
+    "updateItem": {
+        "success" : "Item Updated Successfully.",
+        "error": "Failed to save the item data",
+        "idRequier": "Item Id required"
+    },
+    "deleteItem": {
+        "success" : "Item Deleted Successfully.",
+        "error": "Failed to delete the item data",
+        "swal": {
+            "title": "Are you sure?",
+            "text": "You won't be able to revert this!",
+            "icon": "warning",
+            "confirmButtonColor": "#3085d6",
+            "cancelButtonColor": "#d33",
+            "confirmButtonText": "Yes, delete it!",
+            "error": "Somethings is wrong!",
+            "success": "Your Item has been deleted."
+        }
+    },
+    "emptyFormData": "Don't have For data",
+    "cloudinary_url": "https://api.cloudinary.com/v1_1/drvutnctp/image/upload"
+}
